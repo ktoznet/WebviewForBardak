@@ -1,6 +1,6 @@
 /build
-.idea/
-
+.idea
+/idea
 out/
 local.properties
 *.log
