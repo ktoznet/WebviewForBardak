@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "299329593608",
+    "project_id": "webview-af706",
+    "storage_bucket": "webview-af706.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:299329593608:android:f22afcdf0d1339cbc80cbd",
+        "android_client_info": {
+          "package_name": "com.example.webview"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0ApY-xGe7nreLiTvc_JVB_lwCprl4OoM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

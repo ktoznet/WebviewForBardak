@@ -1,0 +1,7 @@
+/build
+.idea/
+out/
+local.properties
+*.log
+.tmp/
+.history/
