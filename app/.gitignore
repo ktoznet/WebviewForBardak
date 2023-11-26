@@ -1,5 +1,6 @@
 /build
 .idea/
+
 out/
 local.properties
 *.log
