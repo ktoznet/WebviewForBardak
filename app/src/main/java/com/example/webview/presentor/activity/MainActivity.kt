@@ -1,11 +1,14 @@
 package com.example.webview.presentor.activity
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.PorterDuff
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -22,6 +25,8 @@ import android.widget.ProgressBar
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.example.webview.R
@@ -91,6 +96,7 @@ class MainActivity : AppCompatActivity() {
         progressBar.layoutParams = progressBarLayoutParams
         splashLayout.addView(progressBar)
         setContentView(splashLayout)
+        askNotificationPermission()
         mainViewModel.fetchSettings()
         mainViewModel
             .data
@@ -101,6 +107,30 @@ class MainActivity : AppCompatActivity() {
             .launchIn(lifecycleScope)
     }
 
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            // FCM SDK (and your app) can post notifications.
+        } else {
+            // TODO: Inform user that that your app will not show notifications.
+        }
+    }
+
+
+    private fun askNotificationPermission() {
+        // This is only necessary for API level >= 33 (TIRAMISU)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            val notificationPermission = Manifest.permission.POST_NOTIFICATIONS
+            if (ContextCompat.checkSelfPermission(this, notificationPermission) == PackageManager.PERMISSION_GRANTED) {
+                // FCM SDK (and your app) can post notifications.
+            } else if (ActivityCompat.shouldShowRequestPermissionRationale(this, notificationPermission)) {
+            } else {
+                // Directly ask for the permission
+                requestPermissionLauncher.launch(notificationPermission)
+            }
+        }
+    }
     @OptIn(ExperimentalCoroutinesApi::class)
     private fun web(): FrameLayout {
         handleOnBackPressed()

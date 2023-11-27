@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <application
         android:name=".App"
         android:allowBackup="false"
@@ -17,11 +17,13 @@
         tools:ignore="DataExtractionRules"
         tools:replace="android:allowBackup"
         android:supportsRtl="true">
+
         <activity
             android:name=".presentor.activity.MainActivity"
             android:theme="@style/Theme.Webview"
             android:launchMode="singleTask"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
